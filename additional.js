@@ -226,19 +226,21 @@ const modal = document.getElementById("myModal");
 const openBtn = document.getElementById("openModalBtn");
 const closeBtn = document.getElementById("closeModalBtn");
 
-// Open modal
-openBtn.addEventListener("click", () => {
-  modal.style.display = "block";
-});
+if (modal && openBtn && closeBtn) {
+  // Open modal
+  openBtn.addEventListener("click", () => {
+    modal.style.display = "block";
+  });
 
-// Close modal
-closeBtn.addEventListener("click", () => {
-  modal.style.display = "none";
-});
-
-// Close when clicking outside modal box
-window.addEventListener("click", (e) => {
-  if (e.target === modal) {
+  // Close modal
+  closeBtn.addEventListener("click", () => {
     modal.style.display = "none";
-  }
-});
+  });
+
+  // Close when clicking outside modal box
+  window.addEventListener("click", (e) => {
+    if (e.target === modal) {
+      modal.style.display = "none";
+    }
+  });
+}
