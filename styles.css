@@ -833,3 +833,25 @@ html.dark .footer-status-badge { color: #34d399; }
   .hero-title { font-size: 2.5rem; }
   .btn-nav-cta { display: none; }
 }
+
+/* --- SCROLL ANIMATION STATES --- */
+
+/* The starting hidden state applied automatically via JS */
+.scroll-hidden {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.8s cubic-bezier(0.25, 1, 0.5, 1), 
+                transform 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+    will-change: opacity, transform;
+}
+
+/* The visible active state triggered when scrolled into view */
+.scroll-active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Optional: Stagger left and right hero components slightly */
+.hero-right-col.scroll-hidden {
+    transition-delay: 0.2s; /* Delays the placeholder image animation slightly */
+}
