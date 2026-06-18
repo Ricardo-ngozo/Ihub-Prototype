@@ -598,6 +598,106 @@ html.dark .hero-bg-text { opacity: 0.08; }
 .btn-wizard-back.disabled { opacity: 0.4; pointer-events: none; }
 .btn-wizard-next.orange-variant { background: var(--accent); color: #0e0e0e; }
 
+/*carousel (Mukleani)*/ 
+.carousel {
+  position: relative;
+  width: min(100%, 700px);
+  height: 320px;
+  margin: 45px auto 0;
+  overflow: hidden;
+  border-radius: 24px;
+  background: linear-gradient(180deg, #050505 0%, #161616 100%);
+  border: 1px solid rgba(254, 201, 40, 0.25);
+  box-shadow: 0 25px 60px -25px rgba(0, 0, 0, 0.65);
+}
+
+.carousel-track {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.45s ease;
+}
+
+.slide {
+  min-width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  padding: 24px;
+  color: #fff;
+  font-size: clamp(1.4rem, 2vw, 2rem);
+  font-weight: 800;
+  text-align: center;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+}
+
+.slide:nth-child(1) {
+  background: linear-gradient(135deg, rgba(254, 201, 40, 0.18), rgba(0,0,0,0.85) 70%), #111;
+}
+
+.slide:nth-child(2) {
+  background: linear-gradient(135deg, rgba(254, 201, 40, 0.14), rgba(0,0,0,0.88) 55%), #141414;
+}
+
+.slide:nth-child(3) {
+  background: linear-gradient(135deg, rgba(254, 201, 40, 0.1), rgba(0,0,0,0.9) 50%), #0f0f0f;
+}
+
+.slide::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at top left, rgba(254, 201, 40, 0.15), transparent 35%);
+  pointer-events: none;
+}
+
+.carousel-button {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(0, 0, 0, 0.75);
+  color: #fff;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  transition: background 0.25s ease, transform 0.25s ease, color 0.25s ease;
+  z-index: 2;
+}
+
+.carousel-button:hover {
+  background: #fec928;
+  color: #111;
+  transform: translateY(-50%) scale(1.05);
+}
+
+.prev { left: 16px; }
+.next { right: 16px; }
+
+@media (max-width: 768px) {
+  .carousel {
+    height: 280px;
+  }
+}
+
+@media (max-width: 560px) {
+  .carousel {
+    height: 240px;
+  }
+  .carousel-button {
+    width: 38px;
+    height: 38px;
+  }
+}
+
 /* footer */
 .footer-section {
   padding: 80px 0 40px;
