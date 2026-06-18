@@ -8,9 +8,29 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 /**
- * FUNCTION 1: Custom Analytical Event Tracker
+ * FUNCTION 1:  Image carousel/slider(Mukelani)
  */
-function customFunctionOne() {}
+let currentIndex = 0;
+
+function moveSlide(direction) {
+  const track = document.querySelector('.carousel-track');
+  const slides = document.querySelectorAll('.slide');
+  const totalSlides = slides.length;
+
+  // Update the current index based on button direction
+  currentIndex += direction;
+
+  // Loop around if the user goes past the first or last slide
+  if (currentIndex < 0) {
+    currentIndex = totalSlides - 1; // Go to last slide
+  } else if (currentIndex >= totalSlides) {
+    currentIndex = 0; // Loop back to first slide
+  }
+
+  // Shift the track horizontally by the index percentage
+  track.style.transform = `translateX(-${currentIndex * 100}%)`;
+}
+
 
 /**
  * FUNCTION 2: Form Input Field Data Sanitization 
