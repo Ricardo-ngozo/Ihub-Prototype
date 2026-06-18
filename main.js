@@ -175,3 +175,4 @@ function initApplicationWizard() {
   document.getElementById('prev-btn').addEventListener('click', () => moveWizard(-1));
   document.getElementById('next-btn').addEventListener('click', () => moveWizard(1));
 }
+
