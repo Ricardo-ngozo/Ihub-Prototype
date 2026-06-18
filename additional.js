@@ -5,6 +5,7 @@
 
 document.addEventListener('DOMContentLoaded', () => {
   console.log("iHub Africa custom extension engine successfully mounted.");
+  customFunctionThree();
 });
 
 /**
