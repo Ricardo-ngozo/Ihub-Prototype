@@ -122,14 +122,89 @@ function selectTrack(track) {
   }
 }
 
+// --- VALIDATION HELPERS ---
+function isValidEmail(email) {
+  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+}
+
+function isValidPhone(phone) {
+  const digits = phone.replace(/[\s().-]/g, '');
+  return /^\+?\d{7,15}$/.test(digits);
+}
+
+function showFieldError(fieldId, message) {
+  const errEl = document.getElementById(`${fieldId}-error`);
+  const inputEl = document.getElementById(fieldId);
+  if (errEl) {
+    errEl.textContent = message;
+    errEl.classList.remove('hidden');
+  }
+  if (inputEl) inputEl.classList.add('input-invalid');
+}
+
+function clearFieldError(fieldId) {
+  const errEl = document.getElementById(`${fieldId}-error`);
+  const inputEl = document.getElementById(fieldId);
+  if (errEl) {
+    errEl.textContent = '';
+    errEl.classList.add('hidden');
+  }
+  if (inputEl) inputEl.classList.remove('input-invalid');
+}
+
+function validateStep2() {
+  let valid = true;
+
+  const nameVal = document.getElementById('app-name').value.trim();
+  clearFieldError('app-name');
+  if (!nameVal) {
+    showFieldError('app-name', 'Please enter your full name.');
+    valid = false;
+  }
+
+  const emailVal = document.getElementById('app-email').value.trim();
+  clearFieldError('app-email');
+  if (!emailVal) {
+    showFieldError('app-email', 'Please enter your email address.');
+    valid = false;
+  } else if (!isValidEmail(emailVal)) {
+    showFieldError('app-email', 'Please enter a valid email address (e.g. name@example.com).');
+    valid = false;
+  }
+
+  const ageVal = document.getElementById('app-age').value.trim();
+  clearFieldError('app-age');
+  if (!ageVal) {
+    showFieldError('app-age', 'Please enter your age.');
+    valid = false;
+  } else if (Number(ageVal) < 16 || Number(ageVal) > 99) {
+    showFieldError('app-age', 'Age must be between 16 and 99.');
+    valid = false;
+  }
+
+  const phoneVal = document.getElementById('app-phone').value.trim();
+  clearFieldError('app-phone');
+  if (!phoneVal) {
+    showFieldError('app-phone', 'Please enter your phone number.');
+    valid = false;
+  } else if (!isValidPhone(phoneVal)) {
+    showFieldError('app-phone', 'Please enter a valid phone number.');
+    valid = false;
+  }
+
+  const statusVal = document.getElementById('app-status').value;
+  clearFieldError('app-status');
+  if (!statusVal) {
+    showFieldError('app-status', 'Please select your current status.');
+    valid = false;
+  }
+
+  return valid;
+}
+
 function moveWizard(direction) {
   if (direction === 1 && activeStep === 2) {
-    const nameVal = document.getElementById('app-name').value.trim();
-    const emailVal = document.getElementById('app-email').value.trim();
-    if(!nameVal || !emailVal) {
-      alert("Please fill out your identity credentials before shifting phases.");
-      return;
-    }
+    if (!validateStep2()) return;
   }
 
   document.getElementById(`form-step-${activeStep}`).classList.add('hidden');
@@ -144,7 +219,7 @@ function moveWizard(direction) {
   }
 
   document.getElementById(`form-step-${activeStep}`).classList.remove('hidden');
-  document.getElementById('wizard-step-caption').innerText = `Step ${activeStep} of 3: ` + (activeStep === 2 ? "Identity Credentials" : "Motivation Profile");
+  document.getElementById('wizard-step-caption').innerText = `Step ${activeStep} of 3: ` + (activeStep === 2 ? "Your Details" : "Motivation Profile");
   document.getElementById('wizard-progress-fill').style.width = `${(activeStep / 3) * 100}%`;
 
   const prevBtn = document.getElementById('prev-btn');
@@ -170,6 +245,15 @@ function initApplicationWizard() {
   if(slider) {
     slider.addEventListener('input', (e) => {
       document.getElementById('slider-value').innerText = e.target.value + '/10';
+    });
+  }
+
+  const motivationField = document.getElementById('app-motivation');
+  const motivationCounter = document.getElementById('app-motivation-counter');
+  if (motivationField && motivationCounter) {
+    const maxLen = motivationField.getAttribute('maxlength') || 400;
+    motivationField.addEventListener('input', () => {
+      motivationCounter.textContent = `${motivationField.value.length} / ${maxLen}`;
     });
   }
   

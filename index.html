@@ -262,10 +262,36 @@
               <div class="form-field">
                 <label class="form-label">Your Full Name</label>
                 <input type="text" id="app-name" placeholder="e.g. Thabo Ndlovu" class="form-input">
+                <span id="app-name-error" class="form-error hidden"></span>
               </div>
               <div class="form-field">
                 <label class="form-label">Email Address</label>
-                <input type="email" id="app-email" placeholder="thabo@example.com" class="form-input">
+                <input type="email" id="app-email" placeholder="e.g. thabo@example.com" class="form-input">
+                <span id="app-email-error" class="form-error hidden"></span>
+              </div>
+              <div class="form-field-row">
+                <div class="form-field">
+                  <label class="form-label">Age</label>
+                  <input type="number" id="app-age" placeholder="e.g. 24" min="16" max="99" class="form-input">
+                  <span id="app-age-error" class="form-error hidden"></span>
+                </div>
+                <div class="form-field">
+                  <label class="form-label">Phone Number</label>
+                  <input type="tel" id="app-phone" placeholder="e.g. 082 123 4567" class="form-input">
+                  <span id="app-phone-error" class="form-error hidden"></span>
+                </div>
+              </div>
+              <div class="form-field">
+                <label class="form-label">Current Status</label>
+                <select id="app-status" class="form-input">
+                  <option value="" disabled selected>e.g. Select your current status</option>
+                  <option value="student">Student</option>
+                  <option value="employed">Employed</option>
+                  <option value="unemployed">Unemployed</option>
+                  <option value="self-employed">Self-Employed</option>
+                  <option value="other">Other</option>
+                </select>
+                <span id="app-status-error" class="form-error hidden"></span>
               </div>
             </div>
           </div>
@@ -281,13 +307,18 @@
                 <span>Obsessed & Ready</span>
               </div>
             </div>
+            <div class="form-field">
+              <label class="form-label">Tell Us Your Motivation</label>
+              <textarea id="app-motivation" class="form-input form-textarea" maxlength="400" placeholder="e.g. I want to join iHub because..."></textarea>
+              <span id="app-motivation-counter" class="char-counter">0 / 400</span>
+            </div>
           </div>
 
           <!-- Success -->
           <div id="form-step-success" class="wizard-success-pane hidden">
             <div class="success-icon-box"><i class="fa-solid fa-check"></i></div>
-            <h4 class="success-title">Application Transmitted!</h4>
-            <p class="success-desc">Awesome job! We've pinned your selected track choice to your bio database file. Expect automated technical diagnostic challenges in your email inbox within 48 hours.</p>
+            <h4 class="success-title">Welcome to iHub!</h4>
+            <p class="success-desc">Thanks for applying — your application has been received. Our admissions team will review your details and be in touch by email within 48 hours.</p>
           </div>
 
           <!-- Footer Navigation Buttons -->

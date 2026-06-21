@@ -674,6 +674,37 @@ html.dark .hero-bg-text { opacity: 0.08; }
 
 .form-input:focus { border-color: var(--accent); }
 
+.form-field-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+}
+
+.form-textarea {
+  min-height: 100px;
+  resize: vertical;
+  font-family: inherit;
+}
+
+.form-error {
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: #e0413f;
+}
+
+.input-invalid { border-color: #e0413f; }
+
+.char-counter {
+  font-size: 0.7rem;
+  color: var(--text-muted);
+  align-self: flex-end;
+}
+
+@media (max-width: 600px) {
+  .form-field-row { grid-template-columns: 1fr; }
+}
+
+
 .slider-wrapper { display: flex; flex-direction: column; gap: 15px; }
 .form-slider { width: 100%; height: 8px; accent-color: var(--accent); }
 
